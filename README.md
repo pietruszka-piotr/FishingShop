@@ -1,6 +1,6 @@
 # FishingShop
 
-Sklep ze sprzętem wędkarskim w ASP.NET Core. Pierwszy etap zawiera pustą aplikację zwracającą tekst pod adresem `/`.
+Sklep ze sprzętem wędkarskim w ASP.NET Core MVC. Strona główna pod adresem `/` jest obsługiwana przez `HomeController` i wyświetla widok Razor `Views/Home/Index.cshtml`.
 
 ## Visual Studio
 
