@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f5f3ed;
+    color: #20382b;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.site-header {
+    background-color: #173f32;
+    color: #ffffff;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.site-brand {
+    color: inherit;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 6px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    background-color: #2b614c;
+}
+
+a:focus-visible {
+    outline: 3px solid #e1bc62;
+    outline-offset: 4px;
+}
+
+.site-main {
+    flex: 1;
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+.home-intro {
+    max-width: 760px;
+    padding: 40px;
+    border: 1px solid #d8dfd4;
+    border-left: 4px solid #267158;
+    border-radius: 8px;
+    background-color: #ffffff;
+}
+
+.intro-label {
+    margin: 0 0 12px;
+    color: #267158;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 0 0 16px;
+    font-size: 2.75rem;
+    line-height: 1.2;
+}
+
+.intro-text {
+    margin: 0;
+    color: #526458;
+    font-size: 1.125rem;
+}
+
+.site-footer {
+    padding: 20px 0;
+    border-top: 1px solid #d0dacc;
+    background-color: #e8ede5;
+    color: #465b4e;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .site-main {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    .home-intro {
+        padding: 24px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}

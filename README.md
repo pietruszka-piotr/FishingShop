@@ -4,6 +4,8 @@ Sklep ze sprzętem wędkarskim w ASP.NET Core MVC. Strona główna pod adresem `
 
 Wspólny szablon `Views/Shared/_Layout.cshtml` zawiera nagłówek, nawigację i stopkę. Widoki korzystają z niego przez `Views/_ViewStart.cshtml` i dostarczają własny tytuł oraz treść.
 
+Wygląd strony określa `wwwroot/css/site.css`. Układ nagłówka i odstępy dostosowują się do szerokości ekranu.
+
 ## Visual Studio
 
 Otwórz `FishingShop.sln` w Visual Studio 2026 z obsługą ASP.NET. Profil `FishingShop.Web` uruchamia aplikację pod adresem [localhost:5186](http://localhost:5186) i otwiera przeglądarkę.

@@ -4,19 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FishingShop</title>
+    <link rel="stylesheet" href="/css/site.css" />
 </head>
 <body>
-    <header>
-        <p>FishingShop</p>
-        <nav aria-label="Nawigacja główna">
-            <a href="/">Strona główna</a>
-        </nav>
+    <header class="site-header">
+        <div class="container header-content">
+            <a class="site-brand" href="/">FishingShop</a>
+            <nav aria-label="Nawigacja główna">
+                <a class="nav-link" href="/">Strona główna</a>
+            </nav>
+        </div>
     </header>
-    <main>
+    <main class="container site-main">
         @RenderBody()
     </main>
-    <footer>
-        <p>FishingShop - sklep ze sprzętem wędkarskim</p>
+    <footer class="site-footer">
+        <div class="container">
+            <p>FishingShop - sklep ze sprzętem wędkarskim</p>
+        </div>
     </footer>
 </body>
 </html>
