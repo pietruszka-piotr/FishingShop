@@ -6,6 +6,8 @@ Wspólny szablon `Views/Shared/_Layout.cshtml` zawiera nagłówek, nawigację i 
 
 Wygląd strony określa `wwwroot/css/site.css`. Układ nagłówka i odstępy dostosowują się do szerokości ekranu.
 
+Przykładowy produkt jest obiektem klasy `Product`, tworzonym w `HomeController`. Widok odczytuje jego nazwę, opis i cenę przez `@Model`. Cena używa typu `decimal` i jest wyświetlana w złotych z polskim formatowaniem.
+
 ## Visual Studio
 
 Otwórz `FishingShop.sln` w Visual Studio 2026 z obsługą ASP.NET. Profil `FishingShop.Web` uruchamia aplikację pod adresem [localhost:5186](http://localhost:5186) i otwiera przeglądarkę.
