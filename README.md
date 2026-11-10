@@ -6,7 +6,7 @@ Wspólny szablon `Views/Shared/_Layout.cshtml` zawiera nagłówek, nawigację i 
 
 Wygląd strony określa `wwwroot/css/site.css`. Układ nagłówka i odstępy dostosowują się do szerokości ekranu.
 
-Przykładowy produkt jest obiektem klasy `Product`, tworzonym w `HomeController`. Widok odczytuje jego nazwę, opis i cenę przez `@Model`. Cena używa typu `decimal` i jest wyświetlana w złotych z polskim formatowaniem.
+Przykładowe produkty tworzą kolekcję `List<Product>` w `HomeController`. Widok przechodzi po niej pętlą `foreach` i wyświetla karty z nazwą, opisem, ceną oraz miejscem na zdjęcie. Ceny używają typu `decimal` i są wyświetlane w złotych z polskim formatowaniem. Siatka kart dostosowuje liczbę kolumn do szerokości ekranu.
 
 ## Visual Studio
 

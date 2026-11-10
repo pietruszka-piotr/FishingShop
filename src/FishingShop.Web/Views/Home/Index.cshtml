@@ -1,4 +1,4 @@
-@model FishingShop.Web.Models.Product
+@model List<FishingShop.Web.Models.Product>
 
 @{
     ViewData["Title"] = "Strona główna";
@@ -10,11 +10,17 @@
     <p class="intro-text">Wędki, kołowrotki i przynęty w jednym miejscu.</p>
 </section>
 
-<section class="featured-product" aria-labelledby="featured-product-heading">
-    <h2 id="featured-product-heading">Przykładowy produkt</h2>
-    <article class="product-card">
-        <h3>@Model.Name</h3>
-        <p>@Model.Description</p>
-        <p class="product-price">@Model.Price.ToString("C2", System.Globalization.CultureInfo.GetCultureInfo("pl-PL"))</p>
-    </article>
+<section class="product-catalog" aria-labelledby="products-heading">
+    <h2 id="products-heading">Produkty</h2>
+    <div class="product-grid">
+        @foreach (var product in Model)
+        {
+            <article class="product-card">
+                <div class="product-image-placeholder" aria-hidden="true">Miejsce na zdjęcie</div>
+                <h3>@product.Name</h3>
+                <p>@product.Description</p>
+                <p class="product-price">@product.Price.ToString("C2", System.Globalization.CultureInfo.GetCultureInfo("pl-PL"))</p>
+            </article>
+        }
+    </div>
 </section>
