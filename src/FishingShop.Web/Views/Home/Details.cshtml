@@ -1,0 +1,19 @@
+@model FishingShop.Web.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<p class="back-navigation">
+    <a class="back-link" href="@Url.Action("Index", "Home")#products-heading">Wróć do produktów</a>
+</p>
+
+<article class="product-details">
+    <div class="product-image-placeholder" aria-hidden="true">Miejsce na zdjęcie</div>
+    <div>
+        <p class="intro-label">Szczegóły produktu</p>
+        <h1>@Model.Name</h1>
+        <p>@Model.Description</p>
+        <p class="product-price">@Model.Price.ToString("C2", System.Globalization.CultureInfo.GetCultureInfo("pl-PL"))</p>
+    </div>
+</article>

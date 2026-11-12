@@ -8,6 +8,8 @@ Wygląd strony określa `wwwroot/css/site.css`. Układ nagłówka i odstępy dos
 
 Przykładowe produkty tworzą kolekcję `List<Product>` w `HomeController`. Widok przechodzi po niej pętlą `foreach` i wyświetla karty z nazwą, opisem, ceną oraz miejscem na zdjęcie. Ceny używają typu `decimal` i są wyświetlane w złotych z polskim formatowaniem. Siatka kart dostosowuje liczbę kolumn do szerokości ekranu.
 
+Kliknięcie nazwy produktu otwiera jego szczegóły pod adresem `/Home/Details/{id}`. Lista i szczegóły korzystają z tych samych danych. Nieprawidłowy lub nieistniejący identyfikator zwraca stronę z komunikatem i statusem HTTP 404 oraz linkiem powrotu do produktów.
+
 ## Visual Studio
 
 Otwórz `FishingShop.sln` w Visual Studio 2026 z obsługą ASP.NET. Profil `FishingShop.Web` uruchamia aplikację pod adresem [localhost:5186](http://localhost:5186) i otwiera przeglądarkę.
