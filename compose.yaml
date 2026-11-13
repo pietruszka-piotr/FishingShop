@@ -1,0 +1,16 @@
+name: fishingshop
+
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: ${FISHINGSHOP_SQL_PASSWORD:?Set FISHINGSHOP_SQL_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:14334:1433"
+    volumes:
+      - sql-data:/var/opt/mssql
+
+volumes:
+  sql-data:

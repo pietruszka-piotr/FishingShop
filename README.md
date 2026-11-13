@@ -27,3 +27,7 @@ dotnet run --project src/FishingShop.Web
 ```
 
 Otwórz [localhost:5186](http://localhost:5186). Zatrzymanie aplikacji: `Ctrl+C` w terminalu.
+
+## SQL Server
+
+Lokalna baza deweloperska i plan tabel są opisane w [instrukcji bazy](docs/database.md).
