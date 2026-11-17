@@ -19,7 +19,28 @@ Możesz też użyć SSMS. Wybierz serwer `127.0.0.1,14334`, uwierzytelnianie SQL
 
 Port jest dostępny lokalnie, a wolumen `fishingshop_sql-data` przechowuje pliki SQL Servera. `docker compose stop sql` zatrzymuje kontener z zachowaniem danych. Hasło konta `sa` jest zapisywane podczas inicjalizacji. Późniejsza zmiana wpisu w `.env` wymaga także zmiany hasła w SQL Serverze.
 
-## Plan relacji
+## Migracje EF Core
+
+W Visual Studio kliknij prawym przyciskiem projekt `FishingShop.Web` i wybierz **Manage User Secrets**. Ustaw połączenie z lokalnym SQL Serverem. W miejsce `<hasło>` wpisz wartość `FISHINGSHOP_SQL_PASSWORD` z lokalnego `.env`.
+
+```json
+{
+  "ConnectionStrings": {
+    "FishingShop": "Server=127.0.0.1,14334;Database=FishingShop;User ID=sa;Password=\"<hasło>\";Encrypt=True;TrustServerCertificate=True"
+  }
+}
+```
+
+Z katalogu repozytorium przywróć narzędzie i zastosuj migracje.
+
+```console
+dotnet tool restore
+dotnet ef database update --project src/FishingShop.Web -- --environment Development
+```
+
+`CatalogDbContext` opisuje tabele i relacje. Migracja `CreateCatalog` tworzy schemat bazy. EF Core zapisuje wykonane migracje w `__EFMigrationsHistory`, więc ponowne uruchomienie polecenia stosuje tylko brakujące migracje.
+
+## Relacje katalogu
 
 ```mermaid
 erDiagram
@@ -30,11 +51,11 @@ erDiagram
 
 | Tabela | Dane i klucze |
 | --- | --- |
-| `Category` | `Id`, `Name`. Jedna kategoria grupuje wiele produktów. |
-| `Brand` | `Id`, `Name`. Jedna marka ma wiele produktów. |
-| `Product` | `Id`, `Name`, `Description`, `Price` jako `decimal(18,2)`. `CategoryId` i `BrandId` to klucze obce. |
-| `RodSpecification` | `ProductId` to klucz główny i obcy do `Product`. Parametry to `LengthCm`, `CastWeightMinG`, `CastWeightMaxG` oraz typ `Spinning` lub `Casting`. |
+| `Categories` | `Id`, `Name`. Jedna kategoria grupuje wiele produktów. |
+| `Brands` | `Id`, `Name`. Jedna marka ma wiele produktów. |
+| `Products` | `Id`, `Name`, `Description`, nieujemna cena `Price` jako `decimal(18,2)`. `CategoryId` i `BrandId` to wymagane klucze obce. |
+| `RodSpecifications` | `ProductId` to klucz główny i obcy do `Products`, więc produkt może mieć najwyżej jedną specyfikację. Parametry to `LengthCm`, `CastWeightMinG`, `CastWeightMaxG` oraz typ `Spinning` lub `Casting`. |
 
-Długość zapisujemy w centymetrach, a oba ciężary w gramach. Dolna granica musi być dodatnia i nie może przekraczać górnej. Filtr dokładny `7-21 g` sprawdza obie granice. Filtr dla przynęty `14 g` sprawdza, czy `14` mieści się w przedziale wędki. Te warunki można łączyć z długością, marką i typem.
+Długość zapisujemy jako całkowitą liczbę centymetrów, a ciężary jako gramy z dokładnością do dwóch miejsc po przecinku. Długość i dolna granica ciężaru muszą być dodatnie, a dolna granica nie może przekraczać górnej. Filtr dokładny `7-21 g` sprawdza obie granice. Filtr dla przynęty `14 g` sprawdza, czy `14` mieści się w przedziale wędki. Te warunki można łączyć z długością, marką i typem.
 
-Tabele powstaną w kolejnej migracji EF Core. Aplikacja wyświetla obecnie katalog z listy w C#.
+Strona korzysta nadal z przykładowej listy w C#. Kolejny krok to dodanie przykładowych danych do tabel i podłączenie ich odczytu.

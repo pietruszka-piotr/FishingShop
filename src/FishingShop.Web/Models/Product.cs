@@ -9,4 +9,14 @@ public class Product
     public string Description { get; set; } = string.Empty;
 
     public decimal Price { get; set; }
+
+    public int CategoryId { get; set; }
+
+    public Category Category { get; set; } = null!;
+
+    public int BrandId { get; set; }
+
+    public Brand Brand { get; set; } = null!;
+
+    public RodSpecification? RodSpecification { get; set; }
 }
