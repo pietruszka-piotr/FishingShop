@@ -58,4 +58,21 @@ erDiagram
 
 Długość zapisujemy jako całkowitą liczbę centymetrów, a ciężary jako gramy z dokładnością do dwóch miejsc po przecinku. Długość i dolna granica ciężaru muszą być dodatnie, a dolna granica nie może przekraczać górnej. Filtr dokładny `7-21 g` sprawdza obie granice. Filtr dla przynęty `14 g` sprawdza, czy `14` mieści się w przedziale wędki. Te warunki można łączyć z długością, marką i typem.
 
-Strona korzysta nadal z przykładowej listy w C#. Kolejny krok to dodanie przykładowych danych do tabel i podłączenie ich odczytu.
+## Dane przykładowe
+
+Migracja `SeedSampleCatalog` dodaje 12 produktów, po cztery w każdej kategorii. Produkty są powiązane z trzema fikcyjnymi markami `RiverTrail`, `LakePoint` i `ReedCraft`. Cztery wędki mają specyfikacje, w tym castingowa 240 cm z ciężarem wyrzutowym 7-21 g. Nazwy, opisy i ceny to dane demonstracyjne.
+
+Uruchomienie `dotnet ef database update` stosuje tę migrację razem z pozostałymi. W bazie `FishingShop` możesz obejrzeć powiązania poniższym zapytaniem.
+
+```sql
+SELECT p.Id, p.Name, p.Price,
+       c.Name AS Category, b.Name AS Brand,
+       r.LengthCm, r.CastWeightMinG, r.CastWeightMaxG, r.Type
+FROM Products AS p
+JOIN Categories AS c ON c.Id = p.CategoryId
+JOIN Brands AS b ON b.Id = p.BrandId
+LEFT JOIN RodSpecifications AS r ON r.ProductId = p.Id
+ORDER BY p.Id;
+```
+
+Strona korzysta nadal z przykładowej listy w C#. Kolejny krok to podłączenie odczytu katalogu z SQL Servera.
